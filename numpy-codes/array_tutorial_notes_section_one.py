@@ -226,21 +226,133 @@ arr = np.array([[1,2],[3,4],[5,6],[7,8]])
 
 arr = np.array([[1,2],[3,4],[5,6],[7,8]])
 for i in np.nditer(arr, op_dtypes = ["S"], flags = ["buffered"]): #! We use op_dtypes argument for changing data type of array while indexing
-    print(i)    #! We need to flags argument for having some space to put new data type elements. If we don't use that, we'll get this error:
+    i       
+    # print(i)    #! We need to flags argument for having some space to put new data type elements. If we don't use that, we'll get this error:
     """TypeError: Iterator operand required copying or buffering, but neither copying nor buffering was enabled"""
 
 # Iterate by skipping some element
 
 arr =  np.array([[1,2,3,4,5],[6,7,8,9,10]])
 for i in np.nditer(arr[:, : :2]):
-    print(i)  #! It selected elements by skipped 2 step in each array item
+    i
+    # print(i)  #! It selected elements by skipped 2 step in each array item
     
                                                        
+### Join arrays
+#! We pass a sequence of arrays that we want to join to the concatenate() function, along with the axis. If axis is not explicitly passed, it is taken as 0.
 
+arr1 = np.array([[1,2,3],[4,5,6], [-4, -5, -6]])
+arr2 = np.array([[7,8,9],[10,11,12],[-6, -3, -7]])
+
+joined_array = np.concatenate((arr1, arr2), axis=1)
+joined_array
+
+#! Joining arrays with stack method
+
+arr1 = np.array([1,2,3,4])
+arr2 = np.array([5,6,7,8])
+
+joined_with_stack = np.stack((arr1, arr2), axis=1)
+joined_with_stack
+
+# Stacking along rows
+#! hstack() method helps to stack along rows
+#! hstack() means horizontal stacking
+
+arr1 = np.array([1,2,3,4])
+arr2 = np.array([5,6,7,8])
+
+joined_with_hstack = np.hstack((arr1, arr2)) #! This method doesn't have 'axis' argument
+joined_with_hstack
+
+# Stacking along columns
+#! vstack() method helps to stack along columns
+#! vstack() means vertical stacking
+
+arr1 = np.array([1,2,3,4])
+arr2 = np.array([5,6,7,8])
+
+joined_with_vstack = np.vstack((arr1, arr2))
+joined_with_vstack
+
+# Stacking along height
+#! dstack( ) method helps to stack along height
+#! dstack() method means depth stacking
+
+arr1 = np.array([1,2,3,4])
+arr2 = np.array([5,6,7,8])
+
+joined_with_dstack = np.dstack((arr1, arr2))
+joined_with_dstack
+
+
+### Split Arrays
+#! Splitting is opposite of joining in array.
+#! We use array_split() method for splitting
+
+arr = np.array([x for x in range(1,16)])
+splitted_arr = np.array_split(arr, 5)
+splitted_arr  #! splitted_arr is a list that includes 5 different arrays.
+
+for each_splitted_arr in splitted_arr:
     
+    each_splitted_arr  #! Type of each_splitted_arr is numpy.ndarray
+    # print(each_splitted_arr)
+
+#! We have also split() method too for splitting any array. But, split() method doesn't accept missing element and if there is no enough element for splitting, it will return error.
+
+arr = np.array([x for x in range(1,12)]) 
+# EXAMPLE OF SPLIT METHOD (WHAT IF THERE IS NO ENOUGH ELEMENT) --> splitted_with_split = np.split(arr, 4) #! ValueError: array split does not result in an equal division
 
 
-    
+# Split 2-D Arrays
+
+arr = np.array([[1,2],[3,4],[5,6],[7,8],[9,10],[11,12],[13,14]])
+splitted_twod_array = np.array_split(arr, 3)
+splitted_twod_array    #! It is a list that included 3 different arrays
+
+# Split 2-D array into three 2-D arrays along rows
+
+arr = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12], [13, 14, 15], [16, 17, 18]])
+
+newarr = np.array_split(arr, 3, axis=1) #! It does give same result with hsplit() method!
+newarr = np.hsplit(arr, 3)
+
+### Searching Arrays
+#! We use where() method for search any certain value
+arr = np.array([1,2,3,5,6,5,5,7,9,3])
+certain_value = np.where(arr == 5)
+certain_value #! The result is 3,5,6 and it shows indexes of value 5 in array
+
+#! Let me show another example
+import numpy as np
+arr = np.array([1,2,3,4,5,6,7,8,9,6,8,12])
+even_numbers_in_array = np.where(arr%2 == 0) #! As you can see, we put a function in where() method and this function will find the even numbers in arra
+even_numbers_in_array
+
+
+# Search sorted
+#! The method starts the search from the left and returns the first index where the number 7 is no longer larger than the next value.
+arr = np.array([1,2,3,4,5,4,6,7,8,9]) 
+sorted_result = np.searchsorted(arr, 5) 
+sorted_result
+#! If you want to search from right side youcan use 'side' argument like this:
+
+sorted_result = np.searchsorted(arr, 7, side = "right")
+
+# Multiple values
+
+arr = np.array([1,3,5])
+sorted_Result = np.searchsorted(arr, [2,4,6])
+sorted_Result 
+#! The return value is an array: [1 2 3] containing the three indexes where 2, 4, 6 would be inserted in the original array to maintain the order.
+
+
+### Sorting Arrays
+               
+
+
+
     
     
 

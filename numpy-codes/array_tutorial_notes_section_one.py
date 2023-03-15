@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# From EMIS Technology
+# From EMIS TECHNOLOGY
 
 ######## NUMPY  ###########
 
@@ -349,12 +349,69 @@ sorted_Result
 
 
 ### Sorting Arrays
-               
+#! Sorting doens't mean it is just numerical sorting. It also can be alphabetical or boolen sorting!
+#! We use sort() method for that
+arr = np.array([4,46,67,32,4,7,7,9,3,65])
+sorted_arr = np.sort(arr) #! It is copy of the array. That means it doesn't own the array data
+
+# Sorting strings
+
+arr= np.array(["apple","kangroo","zebra","elephant","monkey"])
+sorted_arr = np.sort(arr)
+
+# Sorting array which is containing boolean values
+
+arr = np.array([False, True, True, False,True, True, False])
+sorted_boolean_arr = np.sort(arr) #! It sorts false to true, so false comes firstly in array beacause false(0) is smaller than true(1)
+sorted_boolean_arr
+
+# Sorting 2-D Arrays
+
+arr = np.array([[1,5,7],[4,1,3]])
+sorted_two_arr = np.sort(arr) #! Here, it sorts both of them and didn't touch anything else in arrays
 
 
+### Filtering Arrays
+#! We use boolen index list
+#! A boolean index list is a list of booleans corresponding to indexes in the array.
 
+arr = np.array([36,23,47,12,34])
+boolean_index = [False, True, True, False, False]
+
+new_arr = arr[boolean_index] #! Here, it allows just values whichs index matches with the True boolean.
+#! But this way is not common for filtering. Here is the most common way to do that:
     
+# Create Filter Array
+
+arr = np.array([3,45,57,23,14,56,78,34])
+
+filtering_list = []
+
+for element in arr:
     
+    if element < 35:
+        filtering_list.append(True)
+    
+    else:
+        filtering_list.append(False)
+
+#! You can use this function as whatever you want!
+
+new_arr = arr[filtering_list] #! Here, we created a filtering list and put in this list elements which is smaller than 35. After we applied the protocol
+
+#! This way is most common way but there is still more common way here :) Let's learn that:
+    
+# Filtering by use filter list that is directly got from array
+
+arr = np.array([3,45,57,23,14,56,78,34])
+
+filtering_list = arr%2 != 0
+new_arr = arr[filtering_list]
 
 
+
+### THE FIRST PART OF TUTORIAL NOTES IS DONE
+### LET'S COVER THE FILE AND GO TO SECOND NOTE .PY FILE
+### HAVE A GOOD CODING :)
+### Mehmet Emin ARUK from EMIS TECHNOLOGY
 
